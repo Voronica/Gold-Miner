@@ -11,6 +11,14 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
 
+#include "Util.h"
+#include "Entity.h"
+#include "Scene.h"
+
+#include "Menu.h"
+#include "Level1.h"
+
+
 //include other header files here
 
 SDL_Window* displayWindow;
@@ -20,6 +28,17 @@ ShaderProgram program;
 glm::mat4 modelMatrix, viewMatrix, projectionMatrix;
 
 //declare other global var here
+
+Scene *currentScene;
+Scene *sceneList[4];
+
+
+
+void SwitchToScene(Scene *scene) {
+    currentScene = scene;
+    currentScene->Initialize();
+}
+
 
 void Initialize(){
     SDL_Init(SDL_INIT_VIDEO);
@@ -46,6 +65,13 @@ void Initialize(){
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     //init game objects here
+    
+    sceneList[0] = new Menu();
+    sceneList[1] = new Level1();
+    
+    
+    SwitchToScene(sceneList[1]);
+    
     
 }
 

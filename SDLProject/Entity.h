@@ -16,7 +16,7 @@
 //TODO: need Map.h?
 
 
-enum EntityType{PLAYER, ENEMY, MINE};
+enum EntityType{PLAYER, ENEMY, MINE, MINE_CART};
 
 
 class Entity {
@@ -48,12 +48,11 @@ public:
     bool CheckCollision(Entity *other);
     void CheckCollisionsY(Entity *objects, int objectCount);
     void CheckCollisionsX(Entity *objects, int objectCount);
-    void CheckCollisionX(Map *map);
-    void CheckCollisionY(Map *map);
+    
     
     void AI(Entity *player);
     
-    void Update(float deltaTime, Entity *player, Entity *object, int objectCount, Map *map);
+    void Update(float deltaTime, Entity *player, Entity *object, int objectCount);
     void Render(ShaderProgram *program);
     
     void DrawSpriteFromTextureAtlas(ShaderProgram *program, GLuint textureID, int index);
