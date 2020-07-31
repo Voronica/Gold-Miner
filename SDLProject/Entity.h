@@ -16,7 +16,7 @@
 //TODO: need Map.h?
 
 
-enum EntityType{PLAYER, PLATFORM, ENEMY};
+enum EntityType{PLAYER, ENEMY, MINE};
 
 
 class Entity {
