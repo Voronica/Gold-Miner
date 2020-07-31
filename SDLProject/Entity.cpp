@@ -6,18 +6,27 @@
 
 #include "Entity.h"
 
-Entity::Entity()
-{
+Entity::Entity(){
     position = glm::vec3(0);
-    movement = glm::vec3(0);
     velocity = glm::vec3(0);
-    acceleration = glm::vec3(0);
-    
+    weight = 0;
+    value = 0;
     speed = 0;
-    
     modelMatrix = glm::mat4(1.0f);
 }
-bool Entity::CheckCollision(Entity *other){
+
+Entity* Entity::CheckCollision(Entity* other){
+    if (isActive == false || other->isActive == false) return nullptr;
+    float xdist = fabs(position.x - other->position.x) - ((width + other->width)/2.0f);
+    float ydist = fabs(position.y - other->position.y) - ((height + other->height)/2.0f);
+    
+    if (xdist < 0  && ydist < 0){
+        return other;
+    }
+    return nullptr;
+}
+
+bool Entity::subCheckCollision(Entity *other){
     if (isActive == false || other->isActive == false) return false;
     float xdist = fabs(position.x - other->position.x) - ((width + other->width)/2.0f);
     float ydist = fabs(position.y - other->position.y) - ((height + other->height)/2.0f);
@@ -28,13 +37,15 @@ bool Entity::CheckCollision(Entity *other){
     return false;
 }
 
-void Entity::CheckCollisionsY(Entity *objects, int objectCount){
+Entity* Entity::CheckCollisionsY(Entity *objects, int objectCount){
+    Entity* result = nullptr;
     for (int i =0; i < objectCount; i++){
         Entity *object = &objects[i];
-        
-        if (CheckCollision(object)){
+        if (subCheckCollision(object)){
+            //calculate penetration
             float ydist = fabs(position.y - object->position.y);
             float penetrationY = fabs(ydist - ((height + object->height)/2.0f));
+            //reset penetraion
             if (velocity.y > 0){
                 position.y -= penetrationY;
                 velocity.y = 0;
@@ -45,15 +56,18 @@ void Entity::CheckCollisionsY(Entity *objects, int objectCount){
                 velocity.y = 0;
                 collidedBottom = true;
             }
+            result = object;
         }
     }
+    return result;
 }
 
-void Entity::CheckCollisionsX(Entity *objects, int objectCount){
+Entity*  Entity::CheckCollisionsX(Entity *objects, int objectCount){
+    Entity* result = nullptr;
+    
     for (int i =0; i < objectCount; i++){
         Entity *object = &objects[i];
-        
-        if (CheckCollision(object)){
+        if (subCheckCollision(object)){
             float xdist = fabs(position.x - object->position.x);
             float penetrationX = fabs(xdist - ((width + object->width)/2.0f));
             if (velocity.x > 0){
@@ -66,31 +80,32 @@ void Entity::CheckCollisionsX(Entity *objects, int objectCount){
                 velocity.x = 0;
                 collidedLeft = true;
             }
+            result = object;
         }
     }
+    return result;
+}
+
+
+<<<<<<< HEAD
+=======
+void Entity::AI(Entity *player, Entity *mines, int minesCount){
     
 }
+>>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
 
-
-
-
-
-
-
-void Entity::AI(Entity *player){
-//    switch(aiType){
-//        case WALKER:
-//            AIWalker();
-//            break;
-//        case WAITANDGO:
-//            AIWaitAndGO(player);
-//            break;
-//    }
+void Entity::MineBehavior(Entity *player, Entity* enemies, int enemiesCount){
+    //TODO: when hit by player/enemy, move with player/enemy
+    //when not hit, stay the same
 }
 
+<<<<<<< HEAD
 
 
 void Entity::Update(float deltaTime, Entity *player, Entity *objects, int objectCount){
+=======
+void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemiesCount, Entity *mines, int minesCount){
+>>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
     if (isActive == false) return;
     
     collidedTop = false;
@@ -99,13 +114,23 @@ void Entity::Update(float deltaTime, Entity *player, Entity *objects, int object
     collidedRight = false;
     
     if (entityType == PLAYER){
+        Entity* collidedWith;
+        position.y += velocity.y * deltaTime;
+        collidedWith = CheckCollisionsY(enemies, enemiesCount);//check velocity, set to zero
         
+        
+        position.x += velocity.x * deltaTime;
+        CheckCollisionsX(enemies, enemiesCount);
+        
+        modelMatrix = glm::mat4(1.0f);
+        modelMatrix = glm::translate(modelMatrix, position);
     }
     
     else if (entityType == ENEMY){
-        AI(player);
+        AI(player, mines, minesCount);
     }
     
+<<<<<<< HEAD
     velocity.x = movement.x * speed;
     velocity += acceleration * deltaTime;
     
@@ -122,13 +147,25 @@ void Entity::Update(float deltaTime, Entity *player, Entity *objects, int object
 }
 
 
+=======
+    else if (entityType == MINE){
+        MineBehavior(player, enemies, enemiesCount);
+    }
+    
+    
+    
+}
+>>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
 
 void Entity::Render(ShaderProgram *program) {
     if (isActive == false) return;
     
     program->SetModelMatrix(modelMatrix);
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
     float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
     float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
     

@@ -24,18 +24,23 @@ public:
     EntityType entityType;
     
     glm::vec3 position;
-    glm::vec3 movement;
-    glm::vec3 acceleration;
     glm::vec3 velocity;
-
+    
+    
+    float speed;
     
     float width = 1;
     float height = 1;
     
-    float speed;
+    float weight;
+    float value;
+    
+    
+    
     
     GLuint textureID;
     glm::mat4 modelMatrix;
+    
     
     bool isActive = true;
     bool collidedTop = false;
@@ -45,18 +50,27 @@ public:
     
     Entity();
     
+<<<<<<< HEAD
     bool CheckCollision(Entity *other);
     void CheckCollisionsY(Entity *objects, int objectCount);
     void CheckCollisionsX(Entity *objects, int objectCount);
     
+=======
+    bool subCheckCollision(Entity *other);
+    Entity* CheckCollision(Entity* other);
+        
+    Entity* CheckCollisionsY(Entity *objects, int objectCount);
+    Entity* CheckCollisionsX(Entity *objects, int objectCount);
+>>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
     
-    void AI(Entity *player);
+    void AI(Entity *player, Entity *mines, int minesCount);
+    void MineBehavior(Entity *player, Entity* enemies, int enemiesCount);
     
+<<<<<<< HEAD
     void Update(float deltaTime, Entity *player, Entity *object, int objectCount);
+=======
+    void Update(float deltaTime, Entity *player, Entity *enemies, int enemiesCount, Entity *mines, int minesCount);
+>>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
     void Render(ShaderProgram *program);
-    
-    void DrawSpriteFromTextureAtlas(ShaderProgram *program, GLuint textureID, int index);
-    
-    
-    
+
 };
