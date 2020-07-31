@@ -13,6 +13,8 @@
 #include "ShaderProgram.h"
 
 //include other header file here
+//TODO: need Map.h?
+
 
 enum EntityType{PLAYER, PLATFORM, ENEMY};
 

@@ -63,11 +63,9 @@ void ProcessInput(){
                     case SDLK_LEFT:
                         // Move the player left
                         break;
-                        
                     case SDLK_RIGHT:
                         // Move the player right
                         break;
-                        
                     case SDLK_SPACE:
                         // Some sort of action
                         break;
@@ -85,7 +83,7 @@ void ProcessInput(){
         
     }
     
-    //Do normalize here
+    //TODO: normalize here
 //    if (glm::length(currentScene->state.player->movement) > 1.0f) {
 //        currentScene->state.player->movement = glm::normalize(currentScene->state.player->movement);
 //    }
@@ -114,13 +112,12 @@ void Update(){
         
     }
     accumulator = deltaTime;
-    //Update viewMatrix?
+    //TODO: Update viewMatrix?
     
 }
 
 void Render(){
     glClear(GL_COLOR_BUFFER_BIT);
-    
     
     SDL_GL_SwapWindow(displayWindow);
     
