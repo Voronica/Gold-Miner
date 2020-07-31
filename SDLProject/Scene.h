@@ -15,9 +15,10 @@
 #include "Entity.h"
 
 struct GameState {
-    Entity *player;
     Entity *enemies;
     Entity *mineCart;
+    Entity *mines;
+    Entity *hook;
     
     bool passLevel;
     int nexScene;

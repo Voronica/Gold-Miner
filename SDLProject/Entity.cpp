@@ -16,6 +16,7 @@ Entity::Entity(){
 }
 
 Entity* Entity::CheckCollision(Entity* other){
+    
     if (isActive == false || other->isActive == false) return nullptr;
     float xdist = fabs(position.x - other->position.x) - ((width + other->width)/2.0f);
     float ydist = fabs(position.y - other->position.y) - ((height + other->height)/2.0f);
@@ -62,7 +63,7 @@ Entity* Entity::CheckCollisionsY(Entity *objects, int objectCount){
     return result;
 }
 
-Entity*  Entity::CheckCollisionsX(Entity *objects, int objectCount){
+Entity* Entity::CheckCollisionsX(Entity *objects, int objectCount){
     Entity* result = nullptr;
     
     for (int i =0; i < objectCount; i++){
@@ -87,85 +88,91 @@ Entity*  Entity::CheckCollisionsX(Entity *objects, int objectCount){
 }
 
 
-<<<<<<< HEAD
-=======
 void Entity::AI(Entity *player, Entity *mines, int minesCount){
     
 }
->>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
 
-void Entity::MineBehavior(Entity *player, Entity* enemies, int enemiesCount){
+void Entity::MineBehavior(Entity *player){
     //TODO: when hit by player/enemy, move with player/enemy
     //when not hit, stay the same
+    this->position = player->position;
 }
 
-<<<<<<< HEAD
-
-
-void Entity::Update(float deltaTime, Entity *player, Entity *objects, int objectCount){
-=======
 void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemiesCount, Entity *mines, int minesCount){
->>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
     if (isActive == false) return;
-    
+
     collidedTop = false;
     collidedBottom = false;
     collidedLeft = false;
     collidedRight = false;
     
-    if (entityType == PLAYER){
-        Entity* collidedWith;
-        position.y += velocity.y * deltaTime;
-        collidedWith = CheckCollisionsY(enemies, enemiesCount);//check velocity, set to zero
+    if (entityType == HOOK){
+        //CheckCollisionsY(enemies, enemiesCount);//check velocity, set to zero
+        //CheckCollisionsX(enemies, enemiesCount);
+        //TODO: change speed according to the collided type with corresponding weight
+        Entity *theCollided = nullptr;
+        for (int i = 0; i < minesCount; i++) {
+            theCollided= CheckCollision(&mines[i]);
+            
+            if (theCollided != nullptr){
+                theCollided->MineBehavior(player);
+                loaded = true;
+                
+                break;
+            }
+            
+        }
+        
+        position.y += velocity.y * speed * deltaTime;
+        position.x += velocity.x *  deltaTime;
         
         
-        position.x += velocity.x * deltaTime;
-        CheckCollisionsX(enemies, enemiesCount);
+        if(position.y < -3.25f || loaded){
+            velocity.y = 1;
+        }
         
-        modelMatrix = glm::mat4(1.0f);
-        modelMatrix = glm::translate(modelMatrix, position);
+        if (position.y >2){
+            velocity.y = 0;
+            position = glm::vec3(position.x, 2, position.z);
+            keepMoving = true;
+            
+            theCollided->isActive = false;
+            loaded = false;
+             //TODO: diable mine, track score.
+        }
+        if (position.x <-4.6){
+            velocity.x = 0;
+            position.x = -4.6;
+        }
+        else if (position.x > 4.4){
+            velocity.x = 0;
+            position.x = 4.4;
+        }
     }
     
     else if (entityType == ENEMY){
         AI(player, mines, minesCount);
     }
-    
-<<<<<<< HEAD
-    velocity.x = movement.x * speed;
-    velocity += acceleration * deltaTime;
-    
-    position.y += velocity.y * deltaTime;
-    
-    CheckCollisionsY(objects, objectCount);//check velocity, set to zero
-    
-    position.x += velocity.x * deltaTime;
 
-    CheckCollisionsX(objects, objectCount);
+    else if (entityType == MINE){
+        //MineBehavior(player, enemies, enemiesCount);
+    }
+    else if (entityType == MINE_CART){
+        position.x = player->position.x + 0.1;
+    }
     
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::translate(modelMatrix, position);
+    
+    velocity.x = 0;
 }
-
-
-=======
-    else if (entityType == MINE){
-        MineBehavior(player, enemies, enemiesCount);
-    }
-    
-    
-    
-}
->>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
 
 void Entity::Render(ShaderProgram *program) {
     if (isActive == false) return;
     
     program->SetModelMatrix(modelMatrix);
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> bb50928d09c738060bd1d601d060b3e058327b77
+    //float vertices[]  = { -3.2, -2.0, 3.2, -2.0, 3.2, 2.0, -3.2, -2.0, 3.2, 2.0, -3.2, 2.0 };
     float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
     float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
     
