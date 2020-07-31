@@ -54,13 +54,13 @@ void Initialize(){
     
     viewMatrix = glm::mat4(1.0f);
     modelMatrix = glm::mat4(1.0f);
-    projectionMatrix = glm::ortho(-20.0f, 20.0f, -15.0f, 15.0f, -1.0f, 1.0f);
+    projectionMatrix = glm::ortho(-5.0f, 5.0f, -3.75f, 3.75f, -1.0f, 1.0f);
     
     program.SetProjectionMatrix(projectionMatrix);
     program.SetViewMatrix(viewMatrix);
     glUseProgram(program.programID);
     
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
@@ -69,13 +69,14 @@ void Initialize(){
     sceneList[0] = new Menu();
     sceneList[1] = new Level1();
     
-    
     SwitchToScene(sceneList[1]);
     
     
 }
 
 void ProcessInput(){
+    
+    
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
@@ -93,8 +94,11 @@ void ProcessInput(){
                         // Move the player right
                         break;
                     case SDLK_SPACE:
-                        // Some sort of action
-                        break;
+                        if (currentScene->state.hook->keepMoving) {
+                            currentScene->state.hook->velocity.y = -1;
+                            currentScene->state.hook->keepMoving = false;
+                            break;
+                        }
                 }
                 break; // SDL_KEYDOWNULL
         }
@@ -102,19 +106,14 @@ void ProcessInput(){
     
     const Uint8 *keys = SDL_GetKeyboardState(NULL);
     
-    if (keys[SDL_SCANCODE_LEFT]) {
-        
+    if (currentScene->state.hook->keepMoving) {
+        if (keys[SDL_SCANCODE_LEFT]) {
+            currentScene->state.hook->velocity.x = -1;
+        }
+        else if (keys[SDL_SCANCODE_RIGHT]) {
+            currentScene->state.hook->velocity.x = 1;
+        }
     }
-    else if (keys[SDL_SCANCODE_RIGHT]) {
-        
-    }
-    
-    //TODO: normalize here
-//    if (glm::length(currentScene->state.player->movement) > 1.0f) {
-//        currentScene->state.player->movement = glm::normalize(currentScene->state.player->movement);
-//    }
-    
-    
 }
 
 #define FIXED_TIMESTEP 0.0166666f
@@ -133,7 +132,7 @@ void Update(){
     
     while (deltaTime >= FIXED_TIMESTEP) {
         // Update. Notice it's FIXED_TIMESTEP. Not deltaTime
-        
+        currentScene->Update(FIXED_TIMESTEP);
         deltaTime -= FIXED_TIMESTEP;
         
     }
@@ -144,6 +143,8 @@ void Update(){
 
 void Render(){
     glClear(GL_COLOR_BUFFER_BIT);
+    
+    currentScene->Render(&program);
     
     SDL_GL_SwapWindow(displayWindow);
     

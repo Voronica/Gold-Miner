@@ -9,7 +9,14 @@
 /* Begin PBXBuildFile section */
 		B44309D624D34EF400CA38B0 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44309D424D34EF400CA38B0 /* Entity.cpp */; };
 		B44309D924D34F1500CA38B0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44309D724D34F1500CA38B0 /* Util.cpp */; };
-		D7A813A024D47F9400E9C1D2 /* mineCart.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7A8139F24D47F8300E9C1D2 /* mineCart.jpg */; };
+		B4F24B6624D4A0310014EEE3 /* mineCart.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6524D4A0270014EEE3 /* mineCart.png */; };
+		B4F24B6824D4A4790014EEE3 /* hook.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6724D4A4700014EEE3 /* hook.png */; };
+		B4F24B6D24D4BC970014EEE3 /* gold1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6C24D4BC8F0014EEE3 /* gold1.png */; };
+		B4F24B6E24D4BCA30014EEE3 /* gold2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6924D4BC8F0014EEE3 /* gold2.png */; };
+		B4F24B6F24D4BCA70014EEE3 /* gold3.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6B24D4BC8F0014EEE3 /* gold3.png */; };
+		B4F24B7024D4BCB50014EEE3 /* gold4.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6A24D4BC8F0014EEE3 /* gold4.png */; };
+		B4F24B7224D4BF7B0014EEE3 /* diamond.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B7124D4BF780014EEE3 /* diamond.png */; };
+		B4F24B7424D4C34B0014EEE3 /* pig.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B7324D4C3440014EEE3 /* pig.png */; };
 		D7A813A624D480F700E9C1D2 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813A424D480F700E9C1D2 /* Menu.cpp */; };
 		D7A813AC24D4929900E9C1D2 /* Level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813AA24D4929900E9C1D2 /* Level1.cpp */; };
 		D7A813AF24D493B700E9C1D2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813AD24D493B700E9C1D2 /* Scene.cpp */; };
@@ -31,7 +38,14 @@
 			dstSubfolderSpec = 6;
 			files = (
 				DBDF1B612323DE9E007CECB1 /* shaders in CopyFiles */,
-				D7A813A024D47F9400E9C1D2 /* mineCart.jpg in CopyFiles */,
+				B4F24B7424D4C34B0014EEE3 /* pig.png in CopyFiles */,
+				B4F24B6624D4A0310014EEE3 /* mineCart.png in CopyFiles */,
+				B4F24B6824D4A4790014EEE3 /* hook.png in CopyFiles */,
+				B4F24B6D24D4BC970014EEE3 /* gold1.png in CopyFiles */,
+				B4F24B6E24D4BCA30014EEE3 /* gold2.png in CopyFiles */,
+				B4F24B6F24D4BCA70014EEE3 /* gold3.png in CopyFiles */,
+				B4F24B7024D4BCB50014EEE3 /* gold4.png in CopyFiles */,
+				B4F24B7224D4BF7B0014EEE3 /* diamond.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +56,14 @@
 		B44309D524D34EF400CA38B0 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		B44309D724D34F1500CA38B0 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		B44309D824D34F1500CA38B0 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
-		D7A8139F24D47F8300E9C1D2 /* mineCart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mineCart.jpg; sourceTree = "<group>"; };
+		B4F24B6524D4A0270014EEE3 /* mineCart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mineCart.png; path = ../../../../../Downloads/mineCart.png; sourceTree = "<group>"; };
+		B4F24B6724D4A4700014EEE3 /* hook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook.png; sourceTree = "<group>"; };
+		B4F24B6924D4BC8F0014EEE3 /* gold2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold2.png; sourceTree = "<group>"; };
+		B4F24B6A24D4BC8F0014EEE3 /* gold4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold4.png; sourceTree = "<group>"; };
+		B4F24B6B24D4BC8F0014EEE3 /* gold3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold3.png; sourceTree = "<group>"; };
+		B4F24B6C24D4BC8F0014EEE3 /* gold1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold1.png; sourceTree = "<group>"; };
+		B4F24B7124D4BF780014EEE3 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
+		B4F24B7324D4C3440014EEE3 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
 		D7A813A424D480F700E9C1D2 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		D7A813A524D480F700E9C1D2 /* Menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		D7A813AA24D4929900E9C1D2 /* Level1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level1.cpp; sourceTree = "<group>"; };
@@ -99,7 +120,14 @@
 		DBDF1B512323DE3F007CECB1 /* SDLProject */ = {
 			isa = PBXGroup;
 			children = (
-				D7A8139F24D47F8300E9C1D2 /* mineCart.jpg */,
+				B4F24B7124D4BF780014EEE3 /* diamond.png */,
+				B4F24B6C24D4BC8F0014EEE3 /* gold1.png */,
+				B4F24B6924D4BC8F0014EEE3 /* gold2.png */,
+				B4F24B6B24D4BC8F0014EEE3 /* gold3.png */,
+				B4F24B6A24D4BC8F0014EEE3 /* gold4.png */,
+				B4F24B7324D4C3440014EEE3 /* pig.png */,
+				B4F24B6724D4A4700014EEE3 /* hook.png */,
+				B4F24B6524D4A0270014EEE3 /* mineCart.png */,
 				DBDF1B5B2323DE8D007CECB1 /* glm */,
 				DBDF1B5D2323DE8D007CECB1 /* ShaderProgram.cpp */,
 				DBDF1B592323DE8D007CECB1 /* ShaderProgram.h */,
