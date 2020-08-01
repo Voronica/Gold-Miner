@@ -23,6 +23,7 @@
 
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
+int lives;
 
 GLuint fontTextureID;
 
@@ -76,7 +77,7 @@ void Initialize(){
     
     SwitchToScene(sceneList[1]);
     
-
+    lives = 3;
     
     
 }
@@ -148,6 +149,19 @@ void Update(){
         deltaTime -= FIXED_TIMESTEP;
         
     }
+    
+    //update life
+    
+    if (currentScene->loseLife && lives >= 2) {
+        lives -= 1;
+        currentScene->loseLife = false;
+    }
+    
+    if (currentScene->loseLife && lives == 1) {
+        lives = 0;
+        //gameOver = true;
+    }
+    
     accumulator = deltaTime;
     //TODO: Update viewMatrix?
     
@@ -158,7 +172,7 @@ void Render(){
     
     currentScene->Render(&program);
     
-
+    Util::DrawText(&program, fontTextureID, " x " + std::to_string(lives) , 0.25f, -0.1f, glm::vec3(3.9f, 3.28f, 0));
     
     
     SDL_GL_SwapWindow(displayWindow);

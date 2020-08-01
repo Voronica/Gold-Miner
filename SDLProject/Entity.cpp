@@ -51,11 +51,13 @@ Entity* Entity::CheckCollisionsY(Entity *objects, int objectCount){
                 position.y -= penetrationY;
                 velocity.y = 0;
                 collidedTop = true;
+                collideEnemy = true;
             }
             else if (velocity.y <0){
                 position.y += penetrationY;
                 velocity.y = 0;
                 collidedBottom = true;
+                collideEnemy = true;
             }
             result = object;
         }
@@ -75,11 +77,13 @@ Entity* Entity::CheckCollisionsX(Entity *objects, int objectCount){
                 position.x -= penetrationX;
                 velocity.x = 0;
                 collidedRight = true;
+                collideEnemy = true;
             }
             else if (velocity.x <0){
                 position.x += penetrationX;
                 velocity.x = 0;
                 collidedLeft = true;
+                collideEnemy = true;
             }
             result = object;
         }
@@ -129,6 +133,15 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
                 break;
             }
         }
+        
+        Entity *theCollided_Ememy = nullptr;
+        for (int i = 0; i < enemiesCount; i++) {
+            theCollided_Ememy = CheckCollision(&enemies[i]);
+            if (theCollided_Ememy != nullptr) {
+                this->loseLife = true;
+            }
+        }
+        
         
         position.y += velocity.y * speed * deltaTime;
         position.x += velocity.x *  deltaTime;

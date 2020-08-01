@@ -44,9 +44,10 @@ public:
     bool collidedBottom = false;
     bool collidedLeft = false;
     bool collidedRight = false;
+    bool collideEnemy = false;
     bool keepMoving = true;
     bool loaded = false;
-    
+    bool loseLife = false;
     
     Entity();
     

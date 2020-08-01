@@ -85,7 +85,12 @@ void Level1::Update(float deltaTime) {
     if (state.score > TARGET_SCORE){
         state.nextScene = 2;
     }
-   
+    
+    if(state.hook->loseLife) {
+        std::cout << "Lose One Life" << std::endl;
+        loseLife = true;
+        state.nextScene = 1;
+    }
     
     std::cout << state.lives->position.x << std::endl;
     std::cout << state.lives->position.y << std::endl;
