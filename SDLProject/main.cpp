@@ -24,6 +24,8 @@
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
 
+GLuint fontTextureID;
+
 ShaderProgram program;
 glm::mat4 modelMatrix, viewMatrix, projectionMatrix;
 
@@ -66,10 +68,15 @@ void Initialize(){
     
     //init game objects here
     
+    //Initialize the text
+    fontTextureID = Util::LoadTexture("font2.png");
+    
     sceneList[0] = new Menu();
     sceneList[1] = new Level1();
     
     SwitchToScene(sceneList[1]);
+    
+
     
     
 }
@@ -98,6 +105,11 @@ void ProcessInput(){
                             currentScene->state.hook->velocity.y = -1;
                             currentScene->state.hook->keepMoving = false;
                             break;
+                        }
+                    case SDLK_RETURN:
+                        std::cout << "press enter" << std::endl;
+                        if (currentScene == sceneList[0]){
+                            currentScene->state.nextScene = 1;
                         }
                 }
                 break; // SDL_KEYDOWNULL
@@ -146,6 +158,9 @@ void Render(){
     
     currentScene->Render(&program);
     
+
+    
+    
     SDL_GL_SwapWindow(displayWindow);
     
 }
@@ -159,6 +174,9 @@ int main(int argc, char* argv[]) {
         Update();
         
         //Scene switch here
+        if (currentScene->state.nextScene > 0){
+            SwitchToScene(sceneList[currentScene->state.nextScene]);
+        }
         Render();
         
     }

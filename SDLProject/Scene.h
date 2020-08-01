@@ -19,10 +19,11 @@ struct GameState {
     Entity *mineCart;
     Entity *mines;
     Entity *hook;
+    Entity *lives;
     
     bool passLevel;
-    int nexScene;
-    int lives;
+    int nextScene;
+    int score = 0;
 };
 
 class Scene {

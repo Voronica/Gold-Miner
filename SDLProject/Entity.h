@@ -16,7 +16,7 @@
 //TODO: need Map.h?
 
 
-enum EntityType{HOOK, ENEMY, MINE, MINE_CART};
+enum EntityType{HOOK, ENEMY, MINE, MINE_CART, LIFE};
 
 
 class Entity {
@@ -30,9 +30,11 @@ public:
     float speed;
     float width = 1;
     float height = 1;
+    float number;
     
     float weight;
     float value;
+    float hookValue;
     
     GLuint textureID;
     glm::mat4 modelMatrix;
@@ -56,12 +58,15 @@ public:
 
     
     void AI(Entity *hook, Entity *mines, int minesCount);
-    void MineBehavior(Entity *player);
+    void MineBehavior(Entity *other);
     
 
-    void Update(float deltaTime, Entity *hook, Entity *object, int objectCount);
+   
 
-    void Update(float deltaTime, Entity *hook, Entity *enemies, int enemiesCount, Entity *mines, int minesCount);
+    void Update(float deltaTime, Entity *player, Entity *enemies, int enemiesCount, Entity *mines, int minesCount);
+    
+    
     void Render(ShaderProgram *program);
+    void Render_Life(ShaderProgram *program);
 
 };

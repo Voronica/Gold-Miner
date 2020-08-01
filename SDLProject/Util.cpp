@@ -48,7 +48,6 @@ void Util::DrawText(ShaderProgram *program, GLuint fontTexture, std::string text
             u + width, v,
             u, v + height
         });
-        
         vertices.insert(vertices.end(),{
             offset + (-0.5f * size), 0.5f * size,
             offset + (-0.5f * size), -0.5f * size,
@@ -57,7 +56,8 @@ void Util::DrawText(ShaderProgram *program, GLuint fontTexture, std::string text
             offset + (0.5f * size), 0.5f * size,
             offset + (-0.5f * size), -0.5f * size,
         });
-        
+       }
+    
         glm::mat4 modelMatrix = glm::mat4(1.0f);
         modelMatrix = glm::translate(modelMatrix, position);
         program->SetModelMatrix(modelMatrix);
@@ -75,5 +75,5 @@ void Util::DrawText(ShaderProgram *program, GLuint fontTexture, std::string text
         
         glDisableVertexAttribArray(program->positionAttribute);
         glDisableVertexAttribArray(program->texCoordAttribute);
-    }
+    
 }

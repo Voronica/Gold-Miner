@@ -16,7 +16,7 @@ Entity::Entity(){
 }
 
 Entity* Entity::CheckCollision(Entity* other){
-    
+    if (this->entityType == ENEMY && loaded == true) return nullptr;//for enemy not picking up second mine
     if (isActive == false || other->isActive == false) return nullptr;
     float xdist = fabs(position.x - other->position.x) - ((width + other->width)/2.0f);
     float ydist = fabs(position.y - other->position.y) - ((height + other->height)/2.0f);
@@ -88,14 +88,25 @@ Entity* Entity::CheckCollisionsX(Entity *objects, int objectCount){
 }
 
 
-void Entity::AI(Entity *player, Entity *mines, int minesCount){
+void Entity::AI(Entity *hook, Entity *mines, int minesCount){
+    //TODO: touch player -1 lives/touch mine, move mine together
+    velocity.x = 1;
+    
+    Entity *theStolen = nullptr;
+    for (int i = 0; i < minesCount; i++) {
+        theStolen = CheckCollision(&mines[i]);
+        if (theStolen != nullptr) {
+            theStolen->isActive = false; //when enemy hit mine, diable mine
+            loaded = true;
+            break;
+        }
+        
+    }
     
 }
 
-void Entity::MineBehavior(Entity *player){
-    //TODO: when hit by player/enemy, move with player/enemy
-    //when not hit, stay the same
-    this->position = player->position;
+void Entity::MineBehavior(Entity *other){
+    this->position = other->position;
 }
 
 void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemiesCount, Entity *mines, int minesCount){
@@ -107,20 +118,16 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
     collidedRight = false;
     
     if (entityType == HOOK){
-        //CheckCollisionsY(enemies, enemiesCount);//check velocity, set to zero
-        //CheckCollisionsX(enemies, enemiesCount);
         //TODO: change speed according to the collided type with corresponding weight
         Entity *theCollided = nullptr;
         for (int i = 0; i < minesCount; i++) {
             theCollided= CheckCollision(&mines[i]);
-            
             if (theCollided != nullptr){
                 theCollided->MineBehavior(player);
+                hookValue = theCollided->value;//pass the value to the hook, to be able to access from state.
                 loaded = true;
-                
                 break;
             }
-            
         }
         
         position.y += velocity.y * speed * deltaTime;
@@ -135,10 +142,13 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
             velocity.y = 0;
             position = glm::vec3(position.x, 2, position.z);
             keepMoving = true;
-            
-            theCollided->isActive = false;
+            if (loaded){
+                theCollided->isActive = false;
+            }
             loaded = false;
              //TODO: diable mine, track score.
+            
+
         }
         if (position.x <-4.6){
             velocity.x = 0;
@@ -152,6 +162,9 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
     
     else if (entityType == ENEMY){
         AI(player, mines, minesCount);
+        position.y += velocity.y * speed * deltaTime;
+        position.x += velocity.x *  deltaTime;
+        
     }
 
     else if (entityType == MINE){
@@ -174,6 +187,30 @@ void Entity::Render(ShaderProgram *program) {
     
     //float vertices[]  = { -3.2, -2.0, 3.2, -2.0, 3.2, 2.0, -3.2, -2.0, 3.2, 2.0, -3.2, 2.0 };
     float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program->positionAttribute);
+    
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}
+
+
+void Entity::Render_Life(ShaderProgram *program) {
+    if (isActive == false) return;
+    
+    program->SetModelMatrix(modelMatrix);
+    
+   
+    float vertices[]  = { -0.3, -0.2, 0.3, -0.2, 0.3, 0.2, -0.3, -0.2, 0.3, 0.2, -0.3, 0.2 };
     float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
     
     glBindTexture(GL_TEXTURE_2D, textureID);

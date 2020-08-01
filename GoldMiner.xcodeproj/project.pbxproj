@@ -17,6 +17,7 @@
 		B4F24B7224D4BF7B0014EEE3 /* diamond.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B7124D4BF780014EEE3 /* diamond.png */; };
 		B4F24B7424D4C34B0014EEE3 /* pig.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B7324D4C3440014EEE3 /* pig.png */; };
 		B4F24B7624D4D4900014EEE3 /* mineCart.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B7524D4D48D0014EEE3 /* mineCart.png */; };
+		D7A7AE3C24D5ED4B00F3B536 /* font2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D7A7AE3B24D5ED4500F3B536 /* font2.png */; };
 		D7A813A624D480F700E9C1D2 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813A424D480F700E9C1D2 /* Menu.cpp */; };
 		D7A813AC24D4929900E9C1D2 /* Level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813AA24D4929900E9C1D2 /* Level1.cpp */; };
 		D7A813AF24D493B700E9C1D2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813AD24D493B700E9C1D2 /* Scene.cpp */; };
@@ -44,6 +45,7 @@
 				B4F24B6E24D4BCA30014EEE3 /* gold2.png in CopyFiles */,
 				B4F24B6F24D4BCA70014EEE3 /* gold3.png in CopyFiles */,
 				B4F24B7024D4BCB50014EEE3 /* gold4.png in CopyFiles */,
+				D7A7AE3C24D5ED4B00F3B536 /* font2.png in CopyFiles */,
 				B4F24B7224D4BF7B0014EEE3 /* diamond.png in CopyFiles */,
 				B4F24B7624D4D4900014EEE3 /* mineCart.png in CopyFiles */,
 			);
@@ -64,6 +66,7 @@
 		B4F24B7124D4BF780014EEE3 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
 		B4F24B7324D4C3440014EEE3 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
 		B4F24B7524D4D48D0014EEE3 /* mineCart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mineCart.png; sourceTree = "<group>"; };
+		D7A7AE3B24D5ED4500F3B536 /* font2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font2.png; sourceTree = "<group>"; };
 		D7A813A424D480F700E9C1D2 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		D7A813A524D480F700E9C1D2 /* Menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		D7A813AA24D4929900E9C1D2 /* Level1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level1.cpp; sourceTree = "<group>"; };
@@ -104,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				DBDF1B512323DE3F007CECB1 /* SDLProject */,
-				DBDF1B502323DE3F007CECB1 /* Products */,
 				DBDF1B5F2323DE92007CECB1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +117,7 @@
 				DBDF1B4F2323DE3F007CECB1 /* GoldMiner */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		DBDF1B512323DE3F007CECB1 /* SDLProject */ = {
@@ -125,6 +128,7 @@
 				B4F24B6C24D4BC8F0014EEE3 /* gold1.png */,
 				B4F24B6924D4BC8F0014EEE3 /* gold2.png */,
 				B4F24B6B24D4BC8F0014EEE3 /* gold3.png */,
+				D7A7AE3B24D5ED4500F3B536 /* font2.png */,
 				B4F24B6A24D4BC8F0014EEE3 /* gold4.png */,
 				B4F24B7324D4C3440014EEE3 /* pig.png */,
 				B4F24B6724D4A4700014EEE3 /* hook.png */,
@@ -144,6 +148,7 @@
 				D7A813AB24D4929900E9C1D2 /* Level1.h */,
 				D7A813AD24D493B700E9C1D2 /* Scene.cpp */,
 				D7A813AE24D493B700E9C1D2 /* Scene.h */,
+				DBDF1B502323DE3F007CECB1 /* Products */,
 			);
 			path = SDLProject;
 			sourceTree = "<group>";

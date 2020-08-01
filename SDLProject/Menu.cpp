@@ -14,15 +14,15 @@
 #define LEVEL1_HEIGHT 8
 #define LEVEL1_ENEMY_COUNT 3
 
-
+GLuint fontTextureID_Menu;
 
 
 void Menu::Initialize() {
     
-    state.nexScene = -1;
+    state.nextScene = -1;
+    fontTextureID_Menu = Util::LoadTexture("font2.png");
     
-    
-    
+    state.hook = new Entity();
     
     
     
@@ -46,6 +46,9 @@ void Menu::Update(float deltaTime) {
 
 
 void Menu::Render(ShaderProgram *program) {
+    
+    Util::DrawText(program, fontTextureID_Menu, "GOLD MINER!", 0.5, -0.1, glm::vec3(-2,1,0));
+    Util::DrawText(program, fontTextureID_Menu, "press ENTER to play", 0.25, -0.1, glm::vec3(-1.5,0,0));
     
     
 
