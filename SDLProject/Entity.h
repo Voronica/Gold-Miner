@@ -48,6 +48,7 @@ public:
     bool keepMoving = true;
     bool loaded = false;
     bool loseLife = false;
+    bool passLevel = false;
     
     Entity();
     
@@ -68,6 +69,10 @@ public:
     
     
     void Render(ShaderProgram *program);
+    void Render_Enemy(ShaderProgram *program);
     void Render_Life(ShaderProgram *program);
+    void Render_Gold1(ShaderProgram *program);
+    void Render_Gold2(ShaderProgram *program);
+    void Render_Stone(ShaderProgram *program);
 
 };

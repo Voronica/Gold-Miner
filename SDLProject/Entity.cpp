@@ -216,6 +216,29 @@ void Entity::Render(ShaderProgram *program) {
     glDisableVertexAttribArray(program->texCoordAttribute);
 }
 
+void Entity::Render_Enemy(ShaderProgram *program) {
+    if (isActive == false) return;
+    
+    program->SetModelMatrix(modelMatrix);
+    
+    
+    float vertices[]  = { -0.5, -0.4, 0.5, -0.4, 0.5, 0.4, -0.5, -0.4, 0.5, 0.4, -0.5, 0.4 };
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program->positionAttribute);
+    
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}
+
 
 void Entity::Render_Life(ShaderProgram *program) {
     if (isActive == false) return;
@@ -224,6 +247,74 @@ void Entity::Render_Life(ShaderProgram *program) {
     
    
     float vertices[]  = { -0.3, -0.2, 0.3, -0.2, 0.3, 0.2, -0.3, -0.2, 0.3, 0.2, -0.3, 0.2 };
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program->positionAttribute);
+    
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}
+
+void Entity::Render_Gold1(ShaderProgram *program) {
+    if (isActive == false) return;
+    
+    program->SetModelMatrix(modelMatrix);
+    
+
+    float vertices[]  = { -0.2, -0.2, 0.2, -0.2, 0.2, 0.2, -0.2, -0.2, 0.2, 0.2, -0.2, 0.2};
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program->positionAttribute);
+    
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}
+
+void Entity::Render_Gold2(ShaderProgram *program) {
+    if (isActive == false) return;
+    
+    program->SetModelMatrix(modelMatrix);
+    
+    
+    float vertices[]  = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
+    float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
+    
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glEnableVertexAttribArray(program->positionAttribute);
+    
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+}
+
+void Entity::Render_Stone(ShaderProgram *program) {
+    if (isActive == false) return;
+    
+    program->SetModelMatrix(modelMatrix);
+    
+    float vertices[]  = { -0.5, -0.4, 0.5, -0.4, 0.5, 0.4, -0.5, -0.4, 0.5, 0.4, -0.5, 0.4 };
     float texCoords[] = { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0 };
     
     glBindTexture(GL_TEXTURE_2D, textureID);

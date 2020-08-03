@@ -10,8 +10,8 @@
 #define LEVEL1_WIDTH 14
 #define LEVEL1_HEIGHT 8
 #define LEVEL1_ENEMY_COUNT 1
-#define LEVEL1_MINES_COUNT 3
-#define TARGET_SCORE 200
+#define LEVEL1_MINES_COUNT 5
+#define TARGET_SCORE 250
 
 GLuint fontTextureID_1;
 
@@ -31,17 +31,56 @@ void Level1::Initialize() {
     state.mineCart->entityType = MINE_CART;
     state.mineCart->position = glm::vec3(state.hook->position.x+0.1, 3, 0);
     
+    
     //Mines
-    GLuint gold1TextureID = Util::LoadTexture("gold1.png");
+    
     state.mines = new Entity[LEVEL1_MINES_COUNT];
-    for (int i = 0; i < LEVEL1_MINES_COUNT; i++){
-        state.mines[i].entityType = MINE;
-        state.mines[i].textureID = gold1TextureID;
-        state.mines[i].position = glm::vec3(2*i-1, 0.5*(2-i)-1, 0);
-        state.mines[i].weight = 3;
-        state.mines[i].value = 100;
-        
-    }
+
+    // ------------------------------------
+    //Initialize gold(type1) - value 100
+    
+    state.mines[0].entityType = MINE;
+    state.mines[0].position = glm::vec3(2, 0, 0);
+    state.mines[0].weight = 3;
+    state.mines[0].value= 100;
+    state.mines[0].textureID = Util::LoadTexture("gold1.png");
+
+    state.mines[1].entityType = MINE;
+    state.mines[1].position = glm::vec3(-2, 0, 0);
+    state.mines[1].weight = 3;
+    state.mines[1].value= 100;
+    state.mines[1].textureID = Util::LoadTexture("gold1.png");
+    
+    state.mines[2].entityType = MINE;
+    state.mines[2].position = glm::vec3(-1.5f, 1, 0);
+    state.mines[2].weight = 3;
+    state.mines[2].value= 100;
+    state.mines[2].textureID = Util::LoadTexture("gold1.png");
+    
+    // ------------------------------------
+    //Initialize gold(type2) - value 200
+    
+    state.mines[3].entityType = MINE;
+    state.mines[3].position = glm::vec3(3.0f, -1, 0);
+    state.mines[3].weight = 3;
+    state.mines[3].value= 200;
+    state.mines[3].textureID = Util::LoadTexture("gold2.png");
+    
+    // ------------------------------------
+    //Initialize stone - value 20
+    
+    state.mines[4].entityType = MINE;
+    state.mines[4].position = glm::vec3(0.5f, 0, 0);
+    state.mines[4].weight = 3;
+    state.mines[4].value= 20;
+    state.mines[4].textureID = Util::LoadTexture("stone.png");
+    
+    
+    
+    
+    
+    
+    
     GLuint pigTextureID = Util::LoadTexture("pig.png");
     state.enemies = new Entity[LEVEL1_ENEMY_COUNT];
     for (int i = 0; i < LEVEL1_ENEMY_COUNT; i++){
@@ -81,8 +120,26 @@ void Level1::Update(float deltaTime) {
         state.score += state.hook->hookValue;
     }
     state.hook->hookValue = 0;
+    
+    //Lose Condition - all mines disppear but not reach the target score
+    int inActive = 0;
+    
+    for (int i = 0; i < LEVEL1_MINES_COUNT; i++) {
+        if (!state.mines[i].isActive) inActive += 1;
+    }
+    
+    if (inActive == LEVEL1_MINES_COUNT && state.score < TARGET_SCORE) {
+        std::cout << "Lose One Life" << std::endl;
+        loseLife = true;
+        state.nextScene = 1;
+        state.score = 0;
+    }
+    
+    
+    
     //switch scene condition
-    if (state.score > TARGET_SCORE){
+    if (state.score >= TARGET_SCORE){
+        std::cout << "Pass Level1" << std::endl;
         state.nextScene = 2;
     }
     
@@ -90,6 +147,8 @@ void Level1::Update(float deltaTime) {
         std::cout << "Lose One Life" << std::endl;
         loseLife = true;
         state.nextScene = 1;
+        state.score = 0;
+        
     }
     
     std::cout << state.lives->position.x << std::endl;
@@ -104,11 +163,16 @@ void Level1::Render(ShaderProgram *program) {
     state.hook->Render(program);
     state.lives->Render_Life(program);
     
-    for (int i = 0; i < LEVEL1_MINES_COUNT; i++){
-        state.mines[i].Render(program);
+    for (int i = 0; i < 3; i++){
+        state.mines[i].Render_Gold1(program);
     }
+    
+    state.mines[3].Render_Gold2(program);
+    state.mines[4].Render_Stone(program);
+    
+    
     for (int i = 0; i < LEVEL1_ENEMY_COUNT; i++){
-        state.enemies[i].Render(program);
+        state.enemies[i].Render_Enemy(program);
     }
     
     
