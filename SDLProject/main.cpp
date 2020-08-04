@@ -17,6 +17,8 @@
 
 #include "Menu.h"
 #include "Level1.h"
+#include "Level2.h"
+#include "Level3.h"
 
 
 //include other header files here
@@ -45,7 +47,7 @@ void SwitchToScene(Scene *scene) {
 
 void Initialize(){
     SDL_Init(SDL_INIT_VIDEO);
-    displayWindow = SDL_CreateWindow("Hello, World!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 960, SDL_WINDOW_OPENGL);
+    displayWindow = SDL_CreateWindow("Gold Miner", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 960, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
         
@@ -74,6 +76,8 @@ void Initialize(){
     
     sceneList[0] = new Menu();
     sceneList[1] = new Level1();
+    sceneList[2] = new Level2();
+    sceneList[3] = new Level3();
     
     SwitchToScene(sceneList[1]);
     
@@ -160,6 +164,7 @@ void Update(){
     if (currentScene->loseLife && lives == 1) {
         lives = 0;
         //gameOver = true;
+        //TODO: Add lose screen, restart functionality
     }
     
     accumulator = deltaTime;
