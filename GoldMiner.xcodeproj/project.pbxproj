@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B44309D624D34EF400CA38B0 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44309D424D34EF400CA38B0 /* Entity.cpp */; };
 		B44309D924D34F1500CA38B0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44309D724D34F1500CA38B0 /* Util.cpp */; };
+		B485F1EC24D8B2140028AE00 /* Level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B485F1EA24D8B2140028AE00 /* Level2.cpp */; };
+		B485F1EF24D8D75D0028AE00 /* Level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B485F1ED24D8D75D0028AE00 /* Level3.cpp */; };
 		B4F24B6824D4A4790014EEE3 /* hook.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6724D4A4700014EEE3 /* hook.png */; };
 		B4F24B6D24D4BC970014EEE3 /* gold1.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6C24D4BC8F0014EEE3 /* gold1.png */; };
 		B4F24B6E24D4BCA30014EEE3 /* gold2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F24B6924D4BC8F0014EEE3 /* gold2.png */; };
@@ -60,6 +62,10 @@
 		B44309D524D34EF400CA38B0 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		B44309D724D34F1500CA38B0 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		B44309D824D34F1500CA38B0 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		B485F1EA24D8B2140028AE00 /* Level2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level2.cpp; sourceTree = "<group>"; };
+		B485F1EB24D8B2140028AE00 /* Level2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level2.h; sourceTree = "<group>"; };
+		B485F1ED24D8D75D0028AE00 /* Level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level3.cpp; sourceTree = "<group>"; };
+		B485F1EE24D8D75D0028AE00 /* Level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level3.h; sourceTree = "<group>"; };
 		B4F24B6724D4A4700014EEE3 /* hook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook.png; sourceTree = "<group>"; };
 		B4F24B6924D4BC8F0014EEE3 /* gold2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold2.png; sourceTree = "<group>"; };
 		B4F24B6A24D4BC8F0014EEE3 /* gold4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gold4.png; sourceTree = "<group>"; };
@@ -131,9 +137,9 @@
 				B4F24B6C24D4BC8F0014EEE3 /* gold1.png */,
 				B4F24B6924D4BC8F0014EEE3 /* gold2.png */,
 				B4F24B6B24D4BC8F0014EEE3 /* gold3.png */,
+				B4F24B6A24D4BC8F0014EEE3 /* gold4.png */,
 				D7A7AE3B24D5ED4500F3B536 /* font2.png */,
 				D723ECA924D867E000D582BF /* stone.png */,
-				B4F24B6A24D4BC8F0014EEE3 /* gold4.png */,
 				B4F24B7324D4C3440014EEE3 /* pig.png */,
 				B4F24B6724D4A4700014EEE3 /* hook.png */,
 				DBDF1B5B2323DE8D007CECB1 /* glm */,
@@ -150,6 +156,10 @@
 				D7A813A524D480F700E9C1D2 /* Menu.h */,
 				D7A813AA24D4929900E9C1D2 /* Level1.cpp */,
 				D7A813AB24D4929900E9C1D2 /* Level1.h */,
+				B485F1EA24D8B2140028AE00 /* Level2.cpp */,
+				B485F1EB24D8B2140028AE00 /* Level2.h */,
+				B485F1ED24D8D75D0028AE00 /* Level3.cpp */,
+				B485F1EE24D8D75D0028AE00 /* Level3.h */,
 				D7A813AD24D493B700E9C1D2 /* Scene.cpp */,
 				D7A813AE24D493B700E9C1D2 /* Scene.h */,
 				DBDF1B502323DE3F007CECB1 /* Products */,
@@ -228,8 +238,10 @@
 				D7A813A624D480F700E9C1D2 /* Menu.cpp in Sources */,
 				D7A813AF24D493B700E9C1D2 /* Scene.cpp in Sources */,
 				DBDF1B532323DE3F007CECB1 /* main.cpp in Sources */,
+				B485F1EF24D8D75D0028AE00 /* Level3.cpp in Sources */,
 				B44309D624D34EF400CA38B0 /* Entity.cpp in Sources */,
 				DBDF1B5E2323DE8D007CECB1 /* ShaderProgram.cpp in Sources */,
+				B485F1EC24D8B2140028AE00 /* Level2.cpp in Sources */,
 				B44309D924D34F1500CA38B0 /* Util.cpp in Sources */,
 				D7A813AC24D4929900E9C1D2 /* Level1.cpp in Sources */,
 			);

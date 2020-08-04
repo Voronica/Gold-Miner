@@ -95,7 +95,6 @@ Entity* Entity::CheckCollisionsX(Entity *objects, int objectCount){
 void Entity::AI(Entity *hook, Entity *mines, int minesCount){
     //TODO: touch player -1 lives/touch mine, move mine together
     velocity.x = 1;
-    
     Entity *theStolen = nullptr;
     for (int i = 0; i < minesCount; i++) {
         theStolen = CheckCollision(&mines[i]);
@@ -104,9 +103,7 @@ void Entity::AI(Entity *hook, Entity *mines, int minesCount){
             loaded = true;
             break;
         }
-        
     }
-    
 }
 
 void Entity::MineBehavior(Entity *other){
@@ -122,13 +119,14 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
     collidedRight = false;
     
     if (entityType == HOOK){
-        //TODO: change speed according to the collided type with corresponding weight
         Entity *theCollided = nullptr;
+        float loadWeight = 1;
         for (int i = 0; i < minesCount; i++) {
             theCollided= CheckCollision(&mines[i]);
             if (theCollided != nullptr){
                 theCollided->MineBehavior(player);
                 hookValue = theCollided->value;//pass the value to the hook, to be able to access from state.
+                loadWeight = theCollided->weight;
                 loaded = true;
                 break;
             }
@@ -142,15 +140,13 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
             }
         }
         
+        position.y += velocity.y * speed / loadWeight * deltaTime;
+        position.x += velocity.x * speed * deltaTime;
         
-        position.y += velocity.y * speed * deltaTime;
-        position.x += velocity.x *  deltaTime;
         
-        
-        if(position.y < -3.25f || loaded){
+        if(position.y < -3.25f || loaded){//hook return condition
             velocity.y = 1;
         }
-        
         if (position.y >2){
             velocity.y = 0;
             position = glm::vec3(position.x, 2, position.z);
@@ -160,8 +156,6 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
             }
             loaded = false;
              //TODO: diable mine, track score.
-            
-
         }
         if (position.x <-4.6){
             velocity.x = 0;
@@ -176,7 +170,7 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
     else if (entityType == ENEMY){
         AI(player, mines, minesCount);
         position.y += velocity.y * speed * deltaTime;
-        position.x += velocity.x *  deltaTime;
+        position.x += velocity.x * speed * deltaTime;
         
     }
 
@@ -189,7 +183,6 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
     
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::translate(modelMatrix, position);
-    
     velocity.x = 0;
 }
 
@@ -238,7 +231,6 @@ void Entity::Render_Enemy(ShaderProgram *program) {
     glDisableVertexAttribArray(program->positionAttribute);
     glDisableVertexAttribArray(program->texCoordAttribute);
 }
-
 
 void Entity::Render_Life(ShaderProgram *program) {
     if (isActive == false) return;

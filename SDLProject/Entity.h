@@ -32,7 +32,7 @@ public:
     float height = 1;
     float number;
     
-    float weight;
+    float weight = 1;//1 is default weight, >1 pulls slower, <1 pulls faster. cannot be zero
     float value;
     float hookValue;
     
@@ -61,9 +61,6 @@ public:
     
     void AI(Entity *hook, Entity *mines, int minesCount);
     void MineBehavior(Entity *other);
-    
-
-   
 
     void Update(float deltaTime, Entity *player, Entity *enemies, int enemiesCount, Entity *mines, int minesCount);
     
