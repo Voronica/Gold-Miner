@@ -8,8 +8,8 @@
 
 #include "Level3.h"
 
-#define LEVEL3_ENEMY_COUNT 1//TODO: Decide number
-#define LEVEL3_MINES_COUNT 5
+#define LEVEL3_ENEMY_COUNT 2//TODO: Decide number
+#define LEVEL3_MINES_COUNT 7
 #define TARGET_SCORE 1000
 
 GLuint fontTextureID_3;
@@ -39,14 +39,22 @@ void Level3::Initialize() {
     state.mineCart->position = glm::vec3(state.hook->position.x+0.1, 3, 0);
     
     //Enemies
-    GLuint pigTextureID = Util::LoadTexture("pig.png");
+    
     state.enemies = new Entity[LEVEL3_ENEMY_COUNT];
-    for (int i = 0; i < LEVEL3_ENEMY_COUNT; i++){
-        state.enemies[i].entityType = ENEMY;
-        state.enemies[i].textureID = pigTextureID;
-        state.enemies[i].position = glm::vec3(-6,-1,0);//TODO: design enemy position
-        state.enemies[i].speed = 1;
-    }
+    
+    state.enemies[0].entityType = ENEMY;
+    state.enemies[0].entityName = "pig";
+    state.enemies[0].textureID = Util::LoadTexture("pig.png");
+    state.enemies[0].position = glm::vec3(-6,-1,0);//TODO: design enemy position
+    state.enemies[0].speed = 1;
+    
+    state.enemies[1].entityType = ENEMY;
+    state.enemies[1].entityName = "pig_reversed";
+    state.enemies[1].textureID = Util::LoadTexture("pig_reverse.png");
+    state.enemies[1].position = glm::vec3(9,-3,0);//TODO: design enemy position
+    state.enemies[1].speed = 1;
+    
+
     
     //Mines
     state.mines = new Entity[LEVEL3_MINES_COUNT];
@@ -88,6 +96,28 @@ void Level3::Initialize() {
     state.mines[4].weight = 3;
     state.mines[4].value= 20;
     state.mines[4].textureID = Util::LoadTexture("stone.png");
+    
+    // ------------------------------------
+     //Initialize diamond - value 500
+     state.mines[5].entityType = MINE;
+    state.mines[5].position = glm::vec3(-3.0f, -3, 0);
+     state.mines[5].weight = 2;
+     state.mines[5].value= 500;
+     state.mines[5].textureID = Util::LoadTexture("diamond.png");
+    
+    // ------------------------------------
+     //Initialize pig with diamond - value 700
+     state.mines[6].entityType = MINE;
+    state.mines[6].position = glm::vec3(-3.0f, -3, 0);
+    state.mines[6].entityName = "mineOnPig";
+     state.mines[6].weight = 2;
+     state.mines[6].value= 500;
+     state.mines[6].textureID = Util::LoadTexture("pig_withDiamond.png");
+    state.mines[6].speed = 1.5f;
+    std::cout << "Initialize pig" << std::endl;
+    
+    
+    
     
    
      //Initialize life
@@ -183,6 +213,9 @@ void Level3::Render(ShaderProgram *program) {
     
     state.mines[3].Render_Gold2(program);
     state.mines[4].Render_Stone(program);
+    state.mines[5].Render_Gold1(program);
+    state.mines[6].Render_Enemy(program);
+    
     
     
     for (int i = 0; i < LEVEL3_ENEMY_COUNT; i++){

@@ -169,14 +169,30 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
     
     else if (entityType == ENEMY){
         AI(player, mines, minesCount);
-        position.y += velocity.y * speed * deltaTime;
-        position.x += velocity.x * speed * deltaTime;
+        
+        if (this->entityName == "pig") {
+            position.y += velocity.y * speed * deltaTime;
+            position.x += velocity.x * speed * deltaTime;
+        }
+        
+        if (this->entityName == "pig_reversed") {
+                   position.y += velocity.y * speed * deltaTime;
+                   position.x += velocity.x * speed * deltaTime * (-1);
+               }
+        
+        
+        
         
     }
 
     else if (entityType == MINE){
-        //MineBehavior(player, enemies, enemiesCount);
+        
+        if (this->entityName == "mineOnPig") {
+            position.y += velocity.y * speed * deltaTime;
+            position.x += velocity.x * speed * deltaTime;
+        }
     }
+    
     else if (entityType == MINE_CART){
         position.x = player->position.x + 0.1;
     }

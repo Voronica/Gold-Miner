@@ -79,7 +79,7 @@ void Initialize(){
     sceneList[2] = new Level2();
     sceneList[3] = new Level3();
     
-    SwitchToScene(sceneList[1]);
+    SwitchToScene(sceneList[3]);
     
     lives = 3;
     

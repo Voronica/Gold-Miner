@@ -22,6 +22,8 @@
 		B44309D924D34F1500CA38B0 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B44309D724D34F1500CA38B0 /* Util.cpp */; };
 		B485F1EC24D8B2140028AE00 /* Level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B485F1EA24D8B2140028AE00 /* Level2.cpp */; };
 		B485F1EF24D8D75D0028AE00 /* Level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B485F1ED24D8D75D0028AE00 /* Level3.cpp */; };
+		D723ECAD24E48BEE00D582BF /* pig_reverse.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D723ECAC24E48BD900D582BF /* pig_reverse.png */; };
+		D723ECAF24E4988300D582BF /* pig_withDiamond.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = D723ECAE24E4987E00D582BF /* pig_withDiamond.png */; };
 		D7A813A624D480F700E9C1D2 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813A424D480F700E9C1D2 /* Menu.cpp */; };
 		D7A813AC24D4929900E9C1D2 /* Level1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813AA24D4929900E9C1D2 /* Level1.cpp */; };
 		D7A813AF24D493B700E9C1D2 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D7A813AD24D493B700E9C1D2 /* Scene.cpp */; };
@@ -49,6 +51,8 @@
 				B42B2F5E24E470CA00CDFFB6 /* stone.png in CopyFiles */,
 				B42B2F5D24E470C800CDFFB6 /* background.png in CopyFiles */,
 				B42B2F5C24E470C600CDFFB6 /* hook.png in CopyFiles */,
+				D723ECAD24E48BEE00D582BF /* pig_reverse.png in CopyFiles */,
+				D723ECAF24E4988300D582BF /* pig_withDiamond.png in CopyFiles */,
 				B42B2F5B24E470C400CDFFB6 /* gold4.png in CopyFiles */,
 				B42B2F5A24E470C000CDFFB6 /* gold3.png in CopyFiles */,
 				DBDF1B612323DE9E007CECB1 /* shaders in CopyFiles */,
@@ -88,6 +92,9 @@
 		B485F1EB24D8B2140028AE00 /* Level2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level2.h; sourceTree = "<group>"; };
 		B485F1ED24D8D75D0028AE00 /* Level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level3.cpp; sourceTree = "<group>"; };
 		B485F1EE24D8D75D0028AE00 /* Level3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level3.h; sourceTree = "<group>"; };
+		D723ECAB24E48BCA00D582BF /* pig_reverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig_reverse.png; sourceTree = "<group>"; };
+		D723ECAC24E48BD900D582BF /* pig_reverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig_reverse.png; sourceTree = "<group>"; };
+		D723ECAE24E4987E00D582BF /* pig_withDiamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig_withDiamond.png; sourceTree = "<group>"; };
 		D7A813A424D480F700E9C1D2 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		D7A813A524D480F700E9C1D2 /* Menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		D7A813AA24D4929900E9C1D2 /* Level1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level1.cpp; sourceTree = "<group>"; };
@@ -127,6 +134,7 @@
 		B42B2F4224E4708300CDFFB6 /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				D723ECAB24E48BCA00D582BF /* pig_reverse.png */,
 				B42B2F4324E4708300CDFFB6 /* hit3.wav */,
 				B42B2F4424E4708300CDFFB6 /* hit2.wav */,
 				B42B2F4524E4708300CDFFB6 /* rock.wav */,
@@ -148,7 +156,9 @@
 				B42B2F4E24E4708B00CDFFB6 /* gold3.png */,
 				B42B2F5024E4708B00CDFFB6 /* gold4.png */,
 				B42B2F5124E4708B00CDFFB6 /* hook.png */,
+				D723ECAC24E48BD900D582BF /* pig_reverse.png */,
 				B42B2F5224E4708B00CDFFB6 /* background.png */,
+				D723ECAE24E4987E00D582BF /* pig_withDiamond.png */,
 				B42B2F5324E4708B00CDFFB6 /* stone.png */,
 				B42B2F5424E4708B00CDFFB6 /* mineCart.png */,
 				B42B2F5524E4708B00CDFFB6 /* font2.png */,

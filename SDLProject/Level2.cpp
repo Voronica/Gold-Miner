@@ -8,7 +8,7 @@
 
 #include "Level2.h"
 
-#define LEVEL2_ENEMY_COUNT 1//TODO: Decide number
+#define LEVEL2_ENEMY_COUNT 2//TODO: Decide number
 #define LEVEL2_MINES_COUNT 7
 #define TARGET_SCORE 500
 
@@ -40,14 +40,23 @@ void Level2::Initialize() {
     state.mineCart->position = glm::vec3(state.hook->position.x+0.1, 3, 0);
     
     //Enemies
-    GLuint pigTextureID = Util::LoadTexture("pig.png");
+
     state.enemies = new Entity[LEVEL2_ENEMY_COUNT];
-    for (int i = 0; i < LEVEL2_ENEMY_COUNT; i++){
-        state.enemies[i].entityType = ENEMY;
-        state.enemies[i].textureID = pigTextureID;
-        state.enemies[i].position = glm::vec3(-10,-1,0);//TODO: design enemy position
-        state.enemies[i].speed = 1;
-    }
+    
+    state.enemies[0].entityType = ENEMY;
+    state.enemies[0].entityName = "pig";
+    state.enemies[0].textureID = Util::LoadTexture("pig.png");
+    state.enemies[0].position = glm::vec3(-10,-1,0);//TODO: design enemy position
+    state.enemies[0].speed = 1;
+    
+    state.enemies[1].entityType = ENEMY;
+    state.enemies[1].entityName = "pig_reversed";
+    state.enemies[1].textureID = Util::LoadTexture("pig_reverse.png");
+    state.enemies[1].position = glm::vec3(10,1,0);//TODO: design enemy position
+    state.enemies[1].speed = 1;
+    
+    
+    
     
     //Mines
     state.mines = new Entity[LEVEL2_MINES_COUNT];

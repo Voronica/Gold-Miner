@@ -31,6 +31,7 @@ public:
     float width = 1;
     float height = 1;
     float number;
+    std::string entityName;
     
     float weight = 1;//1 is default weight, >1 pulls slower, <1 pulls faster. cannot be zero
     float value;
