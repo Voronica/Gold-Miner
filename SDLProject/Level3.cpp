@@ -13,11 +13,18 @@
 #define TARGET_SCORE 1000
 
 GLuint fontTextureID_3;
+GLuint bgTextureID_3;
+
+glm::mat4 backgroundMat_3;
 
 void Level3::Initialize() {
     
     state.nextScene = -1;
     state.score = 0;
+    bgTextureID_3 = Util::LoadTexture("background.png");
+    backgroundMat_3 = glm::mat4(1.0f);
+    backgroundMat_3 = glm::translate(backgroundMat_3, glm::vec3(0,-0.2,0));
+    backgroundMat_3 = glm::scale(backgroundMat_3, glm::vec3(10,8,1));
     
     //Initiaize Hook/player - default position
     state.hook = new Entity();
@@ -124,7 +131,7 @@ void Level3::Update(float deltaTime) {
     if (inActive == LEVEL3_MINES_COUNT && state.score < TARGET_SCORE) {
         std::cout << "Lose One Life" << std::endl;
         loseLife = true;
-        state.nextScene = 1;
+        state.nextScene = 3;
         state.score = 0;
     }
     
@@ -148,6 +155,24 @@ void Level3::Update(float deltaTime) {
 
 
 void Level3::Render(ShaderProgram *program) {
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    float vertices[] = {-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5};
+    float texCoords[] = {0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->positionAttribute);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    //draw all my objects here
+    program->SetModelMatrix(backgroundMat_3);
+    glBindTexture(GL_TEXTURE_2D, bgTextureID_3);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+    
     state.mineCart->Render(program);
     state.hook->Render(program);
     state.lives->Render_Life(program);

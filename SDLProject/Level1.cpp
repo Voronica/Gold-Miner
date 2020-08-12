@@ -12,11 +12,19 @@
 #define TARGET_SCORE 250
 
 GLuint fontTextureID_1;
+GLuint bgTextureID_1;
+
+glm::mat4 backgroundMat_1;
 
 void Level1::Initialize() {
     
     state.nextScene = -1;
     state.score = 0;
+    bgTextureID_1 = Util::LoadTexture("background.png");
+    backgroundMat_1 = glm::mat4(1.0f);
+    backgroundMat_1 = glm::translate(backgroundMat_1, glm::vec3(0,-0.2,0));
+    backgroundMat_1 = glm::scale(backgroundMat_1, glm::vec3(10,8,1));
+    
     
     //Initiaize Hook - the player - control position
     state.hook = new Entity();
@@ -170,6 +178,25 @@ void Level1::Update(float deltaTime) {
 
 
 void Level1::Render(ShaderProgram *program) {
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    float vertices[] = {-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5};
+    float texCoords[] = {0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
+    
+    glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+    glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+    glEnableVertexAttribArray(program->positionAttribute);
+    glEnableVertexAttribArray(program->texCoordAttribute);
+    
+    //draw all my objects here
+    program->SetModelMatrix(backgroundMat_1);
+    glBindTexture(GL_TEXTURE_2D, bgTextureID_1);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(program->positionAttribute);
+    glDisableVertexAttribArray(program->texCoordAttribute);
+
+    
     state.mineCart->Render(program);
     state.hook->Render(program);
     state.lives->Render_Life(program);
