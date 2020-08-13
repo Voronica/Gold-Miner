@@ -98,7 +98,7 @@ void Entity::AI(Entity *hook, Entity *mines, int minesCount){
     Entity *theStolen = nullptr;
     for (int i = 0; i < minesCount; i++) {
         theStolen = CheckCollision(&mines[i]);
-        if (theStolen != nullptr) {
+        if (theStolen != nullptr && theStolen->entityName != "mineOnPig") {
             theStolen->isActive = false; //when enemy hit mine, diable mine
             loaded = true;
             break;

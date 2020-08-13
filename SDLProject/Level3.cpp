@@ -108,12 +108,12 @@ void Level3::Initialize() {
     // ------------------------------------
      //Initialize pig with diamond - value 700
      state.mines[6].entityType = MINE;
-    state.mines[6].position = glm::vec3(-6.0f, -3, 0);
+    state.mines[6].position = glm::vec3(-10.0f, -1, 0);
     state.mines[6].entityName = "mineOnPig";
      state.mines[6].weight = 2;
      state.mines[6].value= 700;
      state.mines[6].textureID = Util::LoadTexture("pig_withDiamond.png");
-    state.mines[6].speed = 1.2f;
+    state.mines[6].speed = 1;
     std::cout << "Initialize pig" << std::endl;
     
     
