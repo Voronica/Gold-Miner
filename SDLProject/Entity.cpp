@@ -176,18 +176,17 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
         }
         
         if (this->entityName == "pig_reversed") {
+                
                    position.y += velocity.y * speed * deltaTime;
                    position.x += velocity.x * speed * deltaTime * (-1);
                }
-        
-        
-        
-        
+    
     }
 
     else if (entityType == MINE){
         
         if (this->entityName == "mineOnPig") {
+            velocity.x = 1;
             position.y += velocity.y * speed * deltaTime;
             position.x += velocity.x * speed * deltaTime;
         }
