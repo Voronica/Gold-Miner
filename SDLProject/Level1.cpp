@@ -46,7 +46,7 @@ void Level1::Initialize() {
         state.enemies[i].textureID = pigTextureID;
         state.enemies[i].position = glm::vec3(-6,-1,0);
         state.enemies[i].speed = 0.8;
-        state.enemies[i].modelMatrix = glm::scale(state.enemies[i].modelMatrix, glm::vec3(0.1,0.1,1));
+        state.enemies[i].entityName = "pig";
     }
     
     //Mines
@@ -109,7 +109,7 @@ void Level1::Initialize() {
     //Initialize stone - value 20
     
     state.mines[4].entityType = MINE;
-    state.mines[4].position = glm::vec3(0.5f, 0, 0);
+    state.mines[4].position = glm::vec3(-0.3f, -0.0f, 0);
     state.mines[4].weight = 3;
     state.mines[4].value= 20;
     state.mines[4].textureID = Util::LoadTexture("stone.png");
@@ -139,6 +139,8 @@ void Level1::Update(float deltaTime) {
     }
     for (int i = 0; i < LEVEL1_ENEMY_COUNT; i++){
         state.enemies[i].Update(deltaTime, state.hook, state.enemies, LEVEL1_ENEMY_COUNT, state.mines, LEVEL1_MINES_COUNT);
+        std::cout << state.enemies[i].position.x << std::endl;
+        std::cout << state.enemies[i].position.y << std::endl;
     }
     //add Score functionality;
     if (state.hook->keepMoving == true){

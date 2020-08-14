@@ -7,6 +7,7 @@
 #define GL_GLEXT_PROTOTYPES 1
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include <SDL_mixer.h>
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
@@ -37,6 +38,9 @@ glm::mat4 modelMatrix, viewMatrix, projectionMatrix;
 Scene *currentScene;
 Scene *sceneList[4];
 
+Mix_Music *music;
+Mix_Chunk *select2;
+
 
 
 void SwitchToScene(Scene *scene) {
@@ -46,7 +50,7 @@ void SwitchToScene(Scene *scene) {
 
 
 void Initialize(){
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     displayWindow = SDL_CreateWindow("Gold Miner", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 960, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
@@ -56,6 +60,13 @@ void Initialize(){
 #endif
     
     program.Load("shaders/vertex_textured.glsl", "shaders/fragment_textured.glsl");
+    
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+
+    music = Mix_LoadMUS("Summer Strolls.mp3");
+    Mix_PlayMusic(music, -1);
+    Mix_VolumeMusic(MIX_MAX_VOLUME /4 );
+    
     
     viewMatrix = glm::mat4(1.0f);
     modelMatrix = glm::mat4(1.0f);
@@ -70,6 +81,7 @@ void Initialize(){
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     //init game objects here
+    select2 = Mix_LoadWAV("select2.wav");
     
     //Initialize the text
     fontTextureID = Util::LoadTexture("font2.png");
@@ -79,7 +91,7 @@ void Initialize(){
     sceneList[2] = new Level2();
     sceneList[3] = new Level3();
     
-    SwitchToScene(sceneList[3]);
+    SwitchToScene(sceneList[0]);
     
     lives = 3;
     
@@ -109,6 +121,7 @@ void ProcessInput(){
                         if (currentScene->state.hook->keepMoving) {
                             currentScene->state.hook->velocity.y = -1;
                             currentScene->state.hook->keepMoving = false;
+                            Mix_PlayChannel(-1, select2, 0);
                             break;
                         }
                     case SDLK_RETURN:

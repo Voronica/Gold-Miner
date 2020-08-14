@@ -100,6 +100,7 @@ void Entity::AI(Entity *hook, Entity *mines, int minesCount){
         theStolen = CheckCollision(&mines[i]);
         if (theStolen != nullptr && theStolen->entityName != "mineOnPig") {
             theStolen->isActive = false; //when enemy hit mine, diable mine
+            Mix_PlayChannel(-1, Mix_LoadWAV("hit3.wav"), 0);
             loaded = true;
             break;
         }
@@ -137,6 +138,7 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
             theCollided_Ememy = CheckCollision(&enemies[i]);
             if (theCollided_Ememy != nullptr) {
                 this->loseLife = true;
+                Mix_PlayChannel(-1, Mix_LoadWAV("hit2.wav"), 0);
             }
         }
         
@@ -153,6 +155,16 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
             keepMoving = true;
             if (loaded){
                 theCollided->isActive = false;
+                //play sound
+                if (hookValue == 20){
+                    Mix_PlayChannel(-1, Mix_LoadWAV("rock.wav"), 0);
+                }
+                else if (hookValue == 50 || hookValue == 200){
+                    Mix_PlayChannel(-1, Mix_LoadWAV("gold.wav"), 0);
+                }
+                else if (hookValue == 500 || hookValue == 700){
+                    Mix_PlayChannel(-1, Mix_LoadWAV("diamond.wav"), 0);
+                }
             }
             loaded = false;
              //TODO: diable mine, track score.
@@ -176,15 +188,13 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
         }
         
         if (this->entityName == "pig_reversed") {
-                
-                   position.y += velocity.y * speed * deltaTime;
-                   position.x += velocity.x * speed * deltaTime * (-1);
-               }
+           position.y += velocity.y * speed * deltaTime;
+           position.x += velocity.x * speed * deltaTime * (-1);
+        }
     
     }
 
     else if (entityType == MINE){
-        
         if (this->entityName == "mineOnPig") {
             velocity.x = 1;
             position.y += velocity.y * speed * deltaTime;
