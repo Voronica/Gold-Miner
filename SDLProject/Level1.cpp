@@ -9,7 +9,7 @@
 #include "Level1.h"
 #define LEVEL1_ENEMY_COUNT 1
 #define LEVEL1_MINES_COUNT 8
-#define TARGET_SCORE 250
+#define TARGET_SCORE 300
 
 GLuint fontTextureID_1;
 GLuint bgTextureID_1;
@@ -63,37 +63,37 @@ void Level1::Initialize() {
     state.mines[0].entityType = MINE;
     state.mines[0].position = glm::vec3(2, 0, 0);
     state.mines[0].weight = 1;
-    state.mines[0].value= 50;
+    state.mines[0].value= 30;
     state.mines[0].textureID = goldID1;
 
     state.mines[1].entityType = MINE;
     state.mines[1].position = glm::vec3(-2, 0, 0);
     state.mines[1].weight = 1;
-    state.mines[1].value= 50;
+    state.mines[1].value= 30;
     state.mines[1].textureID = goldID2;
     
     state.mines[2].entityType = MINE;
     state.mines[2].position = glm::vec3(-1.5f, 1, 0);
     state.mines[2].weight = 1;
-    state.mines[2].value= 50;
+    state.mines[2].value= 30;
     state.mines[2].textureID = goldID1;
     
     state.mines[5].entityType = MINE;
     state.mines[5].position = glm::vec3(-2.2f, -2, 0);
     state.mines[5].weight = 1;
-    state.mines[5].value= 50;
+    state.mines[5].value= 30;
     state.mines[5].textureID = goldID2;
     
     state.mines[6].entityType = MINE;
     state.mines[6].position = glm::vec3(-4.3f, -3.2, 0);
     state.mines[6].weight = 1;
-    state.mines[6].value= 50;
+    state.mines[6].value= 30;
     state.mines[6].textureID = goldID3;
     
     state.mines[7].entityType = MINE;
     state.mines[7].position = glm::vec3(-0.5f, -2.8, 0);
     state.mines[7].weight = 1;
-    state.mines[7].value= 50;
+    state.mines[7].value= 30;
     state.mines[7].textureID = goldID4;
     
     
@@ -107,12 +107,12 @@ void Level1::Initialize() {
     state.mines[3].textureID = goldID2;
     
     // ------------------------------------
-    //Initialize stone - value 20
+    //Initialize stone - value 0
     
     state.mines[4].entityType = MINE;
     state.mines[4].position = glm::vec3(-0.3f, -0.0f, 0);
     state.mines[4].weight = 3;
-    state.mines[4].value= 20;
+    state.mines[4].value= 0;
     state.mines[4].textureID = Util::LoadTexture("stone.png");
     
    

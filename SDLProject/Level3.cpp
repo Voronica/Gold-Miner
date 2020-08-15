@@ -9,8 +9,8 @@
 #include "Level3.h"
 
 #define LEVEL3_ENEMY_COUNT 2//TODO: Decide number
-#define LEVEL3_MINES_COUNT 7
-#define TARGET_SCORE 1000
+#define LEVEL3_MINES_COUNT 8
+#define TARGET_SCORE 1500
 
 GLuint fontTextureID_3;
 GLuint bgTextureID_3;
@@ -52,7 +52,7 @@ void Level3::Initialize() {
     state.enemies[1].entityType = ENEMY;
     state.enemies[1].entityName = "pig_reversed";
     state.enemies[1].textureID = Util::LoadTexture("pig_reverse.png");
-    state.enemies[1].position = glm::vec3(9,-3,0);//TODO: design enemy position
+    state.enemies[1].position = glm::vec3(22,-3,0);//TODO: design enemy position
     state.enemies[1].speed = 1;
     
 
@@ -90,12 +90,12 @@ void Level3::Initialize() {
     state.mines[3].textureID = Util::LoadTexture("gold2.png");
     
     // ------------------------------------
-    //Initialize stone - value 20
+    //Initialize stone - value 0
     
     state.mines[4].entityType = MINE;
     state.mines[4].position = glm::vec3(0.5f, 0, 0);
     state.mines[4].weight = 3;
-    state.mines[4].value= 20;
+    state.mines[4].value= 0;
     state.mines[4].textureID = Util::LoadTexture("stone.png");
     
     // ------------------------------------
@@ -115,7 +115,16 @@ void Level3::Initialize() {
      state.mines[6].value= 700;
      state.mines[6].textureID = Util::LoadTexture("pig_withDiamond.png");
     state.mines[6].speed = 1;
-    std::cout << "Initialize pig" << std::endl;
+    
+    
+    state.mines[7].entityType = MINE;
+    state.mines[7].position = glm::vec3(-23.0f, -1, 0);
+    state.mines[7].entityName = "mineOnPig";
+     state.mines[7].weight = 2;
+     state.mines[7].value= 700;
+     state.mines[7].textureID = Util::LoadTexture("pig_withDiamond.png");
+    state.mines[7].speed = 1;
+    
     
     
     
@@ -216,6 +225,8 @@ void Level3::Render(ShaderProgram *program) {
     state.mines[4].Render_Stone(program);
     state.mines[5].Render_Gold1(program);
     state.mines[6].Render_Enemy(program);
+    state.mines[7].Render_Enemy(program);
+    
     
     
     

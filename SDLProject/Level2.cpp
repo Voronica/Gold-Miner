@@ -10,7 +10,7 @@
 
 #define LEVEL2_ENEMY_COUNT 2//TODO: Decide number
 #define LEVEL2_MINES_COUNT 7
-#define TARGET_SCORE 500
+#define TARGET_SCORE 600
 
 GLuint fontTextureID_2;
 GLuint bgTextureID_2;
@@ -98,12 +98,12 @@ void Level2::Initialize() {
     state.mines[5].textureID = Util::LoadTexture("gold1.png");
     
     // ------------------------------------
-    //Initialize stone - value 20
+    //Initialize stone - value 0
     
     state.mines[4].entityType = MINE;
     state.mines[4].position = glm::vec3(0.5f, 0, 0);
     state.mines[4].weight = 3;
-    state.mines[4].value= 20;
+    state.mines[4].value= 0;
     state.mines[4].textureID = Util::LoadTexture("stone.png");
     
     // ------------------------------------
