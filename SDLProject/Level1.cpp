@@ -167,6 +167,7 @@ void Level1::Update(float deltaTime) {
     if (state.score >= TARGET_SCORE){
         std::cout << "Pass Level1" << std::endl;
         state.nextScene = 2;
+        state.passLevel = true;
     }
     
     if(state.hook->loseLife) {

@@ -180,7 +180,7 @@ void Level3::Update(float deltaTime) {
     //switch scene condition
     if (state.score >= TARGET_SCORE){
         std::cout << "Pass Level3" << std::endl;
-        //state.nextScene = ;
+        state.passLevel = true;
     }
     
     if(state.hook->loseLife) {

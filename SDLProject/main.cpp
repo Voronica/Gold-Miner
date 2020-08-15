@@ -26,6 +26,7 @@
 
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
+bool gameOver = false;
 int lives;
 
 GLuint fontTextureID;
@@ -176,7 +177,7 @@ void Update(){
     
     if (currentScene->loseLife && lives == 1) {
         lives = 0;
-        //gameOver = true;
+        gameOver = true;
         //TODO: Add lose screen, restart functionality
     }
     
@@ -192,6 +193,15 @@ void Render(){
     
     Util::DrawText(&program, fontTextureID, " x " + std::to_string(lives) , 0.25f, -0.1f, glm::vec3(3.9f, 3.28f, 0));
     
+    if (currentScene == sceneList[3]) {
+        if (currentScene->state.passLevel) {
+            Util::DrawText(&program, fontTextureID, "You Win!" , 0.5f, -0.25f, glm::vec3(-1.0f, 1, 0));
+        }
+    }
+    
+    if (gameOver) {
+        Util::DrawText(&program, fontTextureID, "You Lose!" , 0.5f, -0.25f, glm::vec3(-1.0f, 1, 0));
+    }
     
     SDL_GL_SwapWindow(displayWindow);
     
@@ -202,7 +212,7 @@ int main(int argc, char* argv[]) {
     
     while (gameIsRunning) {
         
-        ProcessInput();
+        if (!gameOver) ProcessInput();
         Update();
         
         //Scene switch here

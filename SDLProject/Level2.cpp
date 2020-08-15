@@ -167,6 +167,7 @@ void Level2::Update(float deltaTime) {
     //switch scene condition(level win)
     if (state.score >= TARGET_SCORE){
         std::cout << "Pass Level2" << std::endl;
+        state.passLevel = true;
         state.nextScene = 3;
     }
 }
