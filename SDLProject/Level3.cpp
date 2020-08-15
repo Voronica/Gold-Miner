@@ -32,6 +32,7 @@ void Level3::Initialize() {
     state.hook->entityType = HOOK;
     state.hook->position = glm::vec3(0, 2, 0);
     state.hook->speed = 2;
+    state.hook->hookValue = 0;
     //Initialize MineCart
     state.mineCart = new Entity();
     state.mineCart->textureID = Util::LoadTexture("mineCart.png");
