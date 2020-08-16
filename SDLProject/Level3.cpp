@@ -171,14 +171,11 @@ void Level3::Update(float deltaTime) {
     }
     
     if (inActive == LEVEL3_MINES_COUNT && state.score < TARGET_SCORE) {
-        std::cout << "Lose One Life" << std::endl;
+        Mix_PlayChannel(-1, Mix_LoadWAV("fail.wav"), 0);
         loseLife = true;
         state.nextScene = 3;
         state.score = 0;
     }
-    
-    
-    
     //switch scene condition
     if (state.score >= TARGET_SCORE){
         std::cout << "Pass Level3" << std::endl;
