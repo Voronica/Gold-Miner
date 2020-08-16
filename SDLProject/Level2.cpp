@@ -62,24 +62,24 @@ void Level2::Initialize() {
     //Mines
     state.mines = new Entity[LEVEL2_MINES_COUNT];
     // ------------------------------------
-    //Initialize gold(type1) - value 100
+    //Initialize gold(type1) - value 30
     
     state.mines[0].entityType = MINE;
     state.mines[0].position = glm::vec3(2, 0, 0);
     state.mines[0].weight = 1;
-    state.mines[0].value= 50;
+    state.mines[0].value= 30;
     state.mines[0].textureID = Util::LoadTexture("gold1.png");
 
     state.mines[1].entityType = MINE;
     state.mines[1].position = glm::vec3(-2, 0, 0);
     state.mines[1].weight = 1;
-    state.mines[1].value= 50;
+    state.mines[1].value= 30;
     state.mines[1].textureID = Util::LoadTexture("gold2.png");
     
     state.mines[2].entityType = MINE;
     state.mines[2].position = glm::vec3(-1.5f, 1, 0);
     state.mines[2].weight = 1;
-    state.mines[2].value= 50;
+    state.mines[2].value= 30;
     state.mines[2].textureID = Util::LoadTexture("gold3.png");
     
     // ------------------------------------
@@ -167,6 +167,7 @@ void Level2::Update(float deltaTime) {
     //switch scene condition(level win)
     if (state.score >= TARGET_SCORE){
         std::cout << "Pass Level2" << std::endl;
+        //Mix_PlayChannel(-1, Mix_LoadWAV("pass.wav"), 0);
         state.passLevel = true;
         state.nextScene = 3;
     }

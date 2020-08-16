@@ -58,7 +58,7 @@ void Level1::Initialize() {
     GLuint goldID4 = Util::LoadTexture("gold4.png");
     
     // ------------------------------------
-    //Initialize gold(type1) - value 50
+    //Initialize gold(type1) - value 30
     
     state.mines[0].entityType = MINE;
     state.mines[0].position = glm::vec3(2, 0, 0);
@@ -160,22 +160,19 @@ void Level1::Update(float deltaTime) {
         state.nextScene = 1;
         state.score = 0;
     }
-    
-    
-    
     //switch scene condition
     if (state.score >= TARGET_SCORE){
         std::cout << "Pass Level1" << std::endl;
+        //Mix_PlayChannel(-1, Mix_LoadWAV("pass.wav"), 0);
         state.nextScene = 2;
         state.passLevel = true;
+        
     }
-    
     if(state.hook->loseLife) {
         std::cout << "Lose One Life" << std::endl;
         loseLife = true;
         state.nextScene = 1;
         state.score = 0;
-        
     }
 }
 

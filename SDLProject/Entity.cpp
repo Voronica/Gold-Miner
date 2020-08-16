@@ -156,10 +156,10 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
             if (loaded){
                 theCollided->isActive = false;
                 //play sound
-                if (hookValue == 20){
+                if (hookValue == 0){
                     Mix_PlayChannel(-1, Mix_LoadWAV("rock.wav"), 0);
                 }
-                else if (hookValue == 50 || hookValue == 200){
+                else if (hookValue == 30 || hookValue == 200){
                     Mix_PlayChannel(-1, Mix_LoadWAV("gold.wav"), 0);
                 }
                 else if (hookValue == 500 || hookValue == 700){

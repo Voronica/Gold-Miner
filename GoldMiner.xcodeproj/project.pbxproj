@@ -26,6 +26,8 @@
 		B45598C624E6143F006AFE41 /* gold.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = B42B2F4724E4708300CDFFB6 /* gold.wav */; };
 		B45598C724E61441006AFE41 /* diamond.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = B42B2F4B24E4708300CDFFB6 /* diamond.wav */; };
 		B45598C824E6156D006AFE41 /* hit3.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = B42B2F4324E4708300CDFFB6 /* hit3.wav */; };
+		B469A20624E99424002B6C1D /* pass.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = B469A20524E993D4002B6C1D /* pass.wav */; };
+		B469A20724E99426002B6C1D /* fail.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = B469A20424E993D4002B6C1D /* fail.wav */; };
 		B485F1EC24D8B2140028AE00 /* Level2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B485F1EA24D8B2140028AE00 /* Level2.cpp */; };
 		B485F1EF24D8D75D0028AE00 /* Level3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B485F1ED24D8D75D0028AE00 /* Level3.cpp */; };
 		B4AA420324E61F3A004F3233 /* Summer Strolls.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4AA420224E61F37004F3233 /* Summer Strolls.mp3 */; };
@@ -51,6 +53,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				B469A20724E99426002B6C1D /* fail.wav in CopyFiles */,
+				B469A20624E99424002B6C1D /* pass.wav in CopyFiles */,
 				B4AA420324E61F3A004F3233 /* Summer Strolls.mp3 in CopyFiles */,
 				B45598C824E6156D006AFE41 /* hit3.wav in CopyFiles */,
 				B45598C724E61441006AFE41 /* diamond.wav in CopyFiles */,
@@ -102,6 +106,8 @@
 		B44309D524D34EF400CA38B0 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		B44309D724D34F1500CA38B0 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		B44309D824D34F1500CA38B0 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		B469A20424E993D4002B6C1D /* fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fail.wav; sourceTree = "<group>"; };
+		B469A20524E993D4002B6C1D /* pass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pass.wav; sourceTree = "<group>"; };
 		B485F1EA24D8B2140028AE00 /* Level2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level2.cpp; sourceTree = "<group>"; };
 		B485F1EB24D8B2140028AE00 /* Level2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level2.h; sourceTree = "<group>"; };
 		B485F1ED24D8D75D0028AE00 /* Level3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level3.cpp; sourceTree = "<group>"; };
@@ -149,6 +155,8 @@
 		B42B2F4224E4708300CDFFB6 /* audio */ = {
 			isa = PBXGroup;
 			children = (
+				B469A20424E993D4002B6C1D /* fail.wav */,
+				B469A20524E993D4002B6C1D /* pass.wav */,
 				B42B2F4324E4708300CDFFB6 /* hit3.wav */,
 				B42B2F4424E4708300CDFFB6 /* hit2.wav */,
 				B42B2F4524E4708300CDFFB6 /* rock.wav */,
