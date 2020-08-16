@@ -92,7 +92,7 @@ void Initialize(){
     sceneList[2] = new Level2();
     sceneList[3] = new Level3();
     
-    SwitchToScene(sceneList[3]);
+    SwitchToScene(sceneList[1]);
     
     lives = 3;
     
@@ -126,7 +126,7 @@ void ProcessInput(){
                             break;
                         }
                     case SDLK_RETURN:
-                        std::cout << "press enter" << std::endl;
+    
                         if (currentScene == sceneList[0]){
                             currentScene->state.nextScene = 1;
                         }
@@ -182,7 +182,6 @@ void Update(){
     }
     
     accumulator = deltaTime;
-    //TODO: Update viewMatrix?
     
 }
 
@@ -202,7 +201,6 @@ void Render(){
     if (gameOver) {
         Util::DrawText(&program, fontTextureID, "You Lose!" , 0.5f, -0.25f, glm::vec3(-1.0f, 1, 0));
     }
-    
     SDL_GL_SwapWindow(displayWindow);
     
 }
@@ -214,9 +212,9 @@ int main(int argc, char* argv[]) {
         
         if (!gameOver) ProcessInput();
         Update();
-        
         //Scene switch here
         if (currentScene->state.nextScene > 0){
+            Mix_PlayChannel(-1, Mix_LoadWAV("pass.wav"), 0);
             SwitchToScene(sceneList[currentScene->state.nextScene]);
         }
         Render();
