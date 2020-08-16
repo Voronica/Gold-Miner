@@ -126,6 +126,7 @@ void Level1::Initialize() {
     //Initialize the text
     fontTextureID_1 = Util::LoadTexture("font2.png");
     
+    scenceLevel = 1;
     
 }
 

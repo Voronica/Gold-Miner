@@ -28,6 +28,7 @@ struct GameState {
 
 class Scene {
 public:
+    int scenceLevel;
     bool loseLife;
     GameState state;
     virtual void Initialize() = 0;

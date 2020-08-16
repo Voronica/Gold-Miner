@@ -27,6 +27,7 @@
 SDL_Window* displayWindow;
 bool gameIsRunning = true;
 bool gameOver = false;
+bool passGame = false;
 int lives;
 
 GLuint fontTextureID;
@@ -66,7 +67,7 @@ void Initialize(){
 
     music = Mix_LoadMUS("Summer Strolls.mp3");
     Mix_PlayMusic(music, -1);
-    Mix_VolumeMusic(MIX_MAX_VOLUME /4 );
+    Mix_VolumeMusic(MIX_MAX_VOLUME / 4 );
     
     
     viewMatrix = glm::mat4(1.0f);
@@ -92,7 +93,7 @@ void Initialize(){
     sceneList[2] = new Level2();
     sceneList[3] = new Level3();
     
-    SwitchToScene(sceneList[1]);
+    SwitchToScene(sceneList[0]);
     
     lives = 3;
     
@@ -181,6 +182,8 @@ void Update(){
         //TODO: Add lose screen, restart functionality
     }
     
+    if (currentScene->scenceLevel == 3 && currentScene->state.passLevel) passGame = true;
+    
     accumulator = deltaTime;
     
 }
@@ -192,11 +195,9 @@ void Render(){
     
     Util::DrawText(&program, fontTextureID, " x " + std::to_string(lives) , 0.25f, -0.1f, glm::vec3(3.9f, 3.28f, 0));
     
-    if (currentScene == sceneList[3]) {
-        if (currentScene->state.passLevel) {
-            Util::DrawText(&program, fontTextureID, "You Win!" , 0.5f, -0.25f, glm::vec3(-1.0f, 1, 0));
-        }
-    }
+    if (passGame) Util::DrawText(&program, fontTextureID, "You Win!" , 0.5f, -0.25f, glm::vec3(-1.0f, 1, 0));
+        
+    
     
     if (gameOver) {
         Util::DrawText(&program, fontTextureID, "You Lose!" , 0.5f, -0.25f, glm::vec3(-1.0f, 1, 0));
@@ -210,7 +211,8 @@ int main(int argc, char* argv[]) {
     
     while (gameIsRunning) {
         
-        if (!gameOver) ProcessInput();
+        if (!gameOver && !passGame) ProcessInput();
+        
         Update();
         //Scene switch here
         if (currentScene->state.nextScene > 0){

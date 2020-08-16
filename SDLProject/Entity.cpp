@@ -199,6 +199,7 @@ void Entity::Update(float deltaTime, Entity *player, Entity *enemies, int enemie
             velocity.x = 1;
             position.y += velocity.y * speed * deltaTime;
             position.x += velocity.x * speed * deltaTime;
+            if (this->position.x > 6) this->isActive = false;
         }
     }
     

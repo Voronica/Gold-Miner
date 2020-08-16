@@ -140,6 +140,8 @@ void Level3::Initialize() {
     //Initialize the text
     fontTextureID_3 = Util::LoadTexture("font2.png");
     
+    scenceLevel = 3;
+    
     
 }
 

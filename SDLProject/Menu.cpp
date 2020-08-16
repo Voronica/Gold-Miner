@@ -27,7 +27,7 @@ void Menu::Initialize() {
     
     
      
-     
+    scenceLevel = 0;
      
     
 }
