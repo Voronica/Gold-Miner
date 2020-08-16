@@ -216,7 +216,7 @@ int main(int argc, char* argv[]) {
         Update();
         //Scene switch here
         if (currentScene->state.nextScene > 0){
-            Mix_PlayChannel(-1, Mix_LoadWAV("pass.wav"), 0);
+            
             SwitchToScene(sceneList[currentScene->state.nextScene]);
         }
         Render();
